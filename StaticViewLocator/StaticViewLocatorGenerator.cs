@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,9 +70,9 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
                 var viewModels = allSymbols
                     .Where(s =>
                     {
-                        return s!.Name.EndsWith(ViewModelSuffix) && !s.IsAbstract;
+                        return s!.Name.EndsWith(ViewModelSuffix) && !s.IsAbstract && s.DeclaredAccessibility == Accessibility.Public;
                     })
-                    .Concat(referencedViewModels)
+                    .Concat(referencedViewModels.Where(s => s.DeclaredAccessibility == Accessibility.Public))
                     .ToList();
 
                 foreach (var locator in locators)
@@ -193,6 +194,9 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
         var userControlViewSymbol = compilation.GetTypeByMetadataName(
             "Avalonia.Controls.UserControl"
         );
+        var windowViewSymbol = compilation.GetTypeByMetadataName(
+            "Avalonia.Controls.Window"
+        );
         foreach (var namedTypeSymbolViewModel in namedTypeSymbolViewModels)
         {
             string namespaceNameViewModel =
@@ -231,19 +235,48 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
 
             string viewNamespace = namespaceNameViewModel;
             string viewName = classNameViewModel;
+            
+            // Apply namespace rule (if specified) or default transformation
             if (!string.IsNullOrEmpty(nsFrom) && !string.IsNullOrEmpty(nsTo))
+            {
                 viewNamespace = namespaceNameViewModel.Replace(nsTo!, nsFrom!);
+            }
+            else
+            {
+                // Default: ViewModels -> Views
+                viewNamespace = namespaceNameViewModel.Replace("ViewModels", "Views");
+            }
+            
+            // Apply suffix rule (if specified) or default transformation
             if (!string.IsNullOrEmpty(suffixFrom) && !string.IsNullOrEmpty(suffixTo))
+            {
                 viewName = classNameViewModel.Replace(suffixTo!, suffixFrom!);
+            }
+            else
+            {
+                // Default: ViewModel -> View, but handle special cases
+                if (classNameViewModel.EndsWith("ViewModel"))
+                {
+                    var baseName = classNameViewModel.Substring(0, classNameViewModel.Length - "ViewModel".Length);
+                    // For MainWindow, remove ViewModel completely; for others, add View
+                    if (baseName.EndsWith("Window"))
+                    {
+                        viewName = baseName;
+                    }
+                    else
+                    {
+                        viewName = baseName + "View";
+                    }
+                }
+            }
             string classNameView = $"{viewNamespace}.{viewName}";
             var classNameViewSymbol = compilation.GetTypeByMetadataName(classNameView);
-            if (
-                classNameViewSymbol is null
-                || classNameViewSymbol.BaseType?.Equals(
-                    userControlViewSymbol,
-                    SymbolEqualityComparer.Default
-                ) != true
-            )
+            bool isValidView = classNameViewSymbol is not null && (
+                classNameViewSymbol.BaseType?.Equals(userControlViewSymbol, SymbolEqualityComparer.Default) == true ||
+                classNameViewSymbol.BaseType?.Equals(windowViewSymbol, SymbolEqualityComparer.Default) == true
+            );
+            
+            if (!isValidView)
             {
                 source.AppendLine(
                     $"        [typeof({namespaceNameViewModel}.{classNameViewModel})] = () => new TextBlock() {{ Text = \"Not Found: {classNameView}\" }},"
@@ -282,15 +315,15 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
         {
             if (member is INamedTypeSymbol namedType)
             {
-                if (namedType.Name.EndsWith(ViewModelSuffix) && !namedType.IsAbstract)
+                if (namedType.Name.EndsWith(ViewModelSuffix) && !namedType.IsAbstract && namedType.DeclaredAccessibility == Accessibility.Public)
                 {
                     viewModels.Add(namedType);
                 }
 
-                // 递归处理嵌套类型
+                // Recursively process nested types
                 foreach (var nestedType in namedType.GetTypeMembers())
                 {
-                    if (nestedType.Name.EndsWith(ViewModelSuffix) && !nestedType.IsAbstract)
+                    if (nestedType.Name.EndsWith(ViewModelSuffix) && !nestedType.IsAbstract && nestedType.DeclaredAccessibility == Accessibility.Public)
                     {
                         viewModels.Add(nestedType);
                     }

@@ -6,7 +6,7 @@ using StaticViewLocatorDemo.ViewModels;
 
 namespace StaticViewLocatorDemo;
 
-[StaticViewLocator]
+[StaticViewLocator(ExcludeNamespaces = new[] { "Avalonia" })]
 public partial class ViewLocator : IDataTemplate
 {
 #if true
