@@ -1,4 +1,5 @@
 using System;
+using ViewLocatorGenerator;
 using Xunit;
 
 namespace ViewLocator.Generator.Tests;
@@ -130,7 +131,7 @@ public class ViewLocatorGeneratorAttributeTests
         Assert.NotNull(testClass);
     }
 
-    [ViewLocator.Generator(
+    [ViewLocatorGenerator(
         ViewToViewModelNamespaceRule = "Views -> ViewModels",
         ViewToViewModelSuffixRule = "Page -> PageViewModel",
         IncludeNamespaces = new[] { "Test" },

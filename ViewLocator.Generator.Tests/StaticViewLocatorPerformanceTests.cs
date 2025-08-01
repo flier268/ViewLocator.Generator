@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
-using ViewLocator.GeneratorDemo.Examples;
-using ViewLocator.GeneratorDemo.ViewModels;
+using ViewLocator.Generator.Demo.Examples;
+using ViewLocator.Generator.Demo.ViewModels;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -10,11 +10,11 @@ namespace ViewLocator.Generator.Tests;
 /// <summary>
 /// Performance tests for ViewLocator.Generator functionality
 /// </summary>
-public class ViewLocator.GeneratorPerformanceTests
+public class GeneratorPerformanceTests
 {
     private readonly ITestOutputHelper _output;
 
-    public ViewLocator.GeneratorPerformanceTests(ITestOutputHelper output)
+    public GeneratorPerformanceTests(ITestOutputHelper output)
     {
         _output = output;
     }
@@ -29,14 +29,14 @@ public class ViewLocator.GeneratorPerformanceTests
         // Warm up
         for (int i = 0; i < 100; i++)
         {
-            ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
+            ViewLocator.Generator.Demo.ViewLocator.GetView<TestViewModel>();
         }
 
         // Act
         stopwatch.Start();
         for (int i = 0; i < iterations; i++)
         {
-            var view = ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
+            var view = ViewLocator.Generator.Demo.ViewLocator.GetView<TestViewModel>();
             // No need to dispose Avalonia controls
         }
         stopwatch.Stop();
@@ -54,7 +54,7 @@ public class ViewLocator.GeneratorPerformanceTests
     {
         // Arrange
         const int iterations = 10000;
-        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
+        var locator = new ViewLocator.Generator.Demo.ViewLocator();
         var testViewModel = new TestViewModel();
         var stopwatch = new Stopwatch();
 
@@ -87,7 +87,7 @@ public class ViewLocator.GeneratorPerformanceTests
     {
         // Arrange
         const int iterations = 1000;
-        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
+        var locator = new ViewLocator.Generator.Demo.ViewLocator();
         var testViewModel = new TestViewModel();
         var mainWindowViewModel = new MainWindowViewModel();
         var stopwatch = new Stopwatch();
@@ -99,13 +99,13 @@ public class ViewLocator.GeneratorPerformanceTests
             try
             {
                 var view1 = locator.Build(testViewModel);
-                var view3 = ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
+                var view3 = ViewLocator.Generator.Demo.ViewLocator.GetView<TestViewModel>();
                 
                 // Skip MainWindow creation in headless environment
                 try
                 {
                     var view2 = locator.Build(mainWindowViewModel);
-                    var view4 = ViewLocator.GeneratorDemo.ViewLocator.GetView<MainWindowViewModel>();
+                    var view4 = ViewLocator.Generator.Demo.ViewLocator.GetView<MainWindowViewModel>();
                 }
                 catch (InvalidOperationException ex) when (ex.Message.Contains("IWindowingPlatform"))
                 {
@@ -128,11 +128,11 @@ public class ViewLocator.GeneratorPerformanceTests
     }
 
     [Fact]
-    public void ViewLocator_ConcurrentAccess_IsThreadSafe()
+    public async Task ViewLocator_ConcurrentAccess_IsThreadSafe()
     {
         // Arrange
         const int iterations = 1000;
-        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
+        var locator = new ViewLocator.Generator.Demo.ViewLocator();
         var testViewModel = new TestViewModel();
         var tasks = new System.Threading.Tasks.Task[Environment.ProcessorCount];
         var stopwatch = new Stopwatch();
@@ -151,7 +151,7 @@ public class ViewLocator.GeneratorPerformanceTests
             });
         }
 
-        System.Threading.Tasks.Task.WaitAll(tasks);
+        await System.Threading.Tasks.Task.WhenAll(tasks);
         stopwatch.Stop();
 
         // Assert
@@ -169,7 +169,7 @@ public class ViewLocator.GeneratorPerformanceTests
     {
         // Arrange
         const int iterations = 1000;
-        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
+        var locator = new ViewLocator.Generator.Demo.ViewLocator();
         var testViewModel = new TestViewModel();
 
         // Force garbage collection to get baseline
@@ -208,7 +208,7 @@ public class ViewLocator.GeneratorPerformanceTests
     public void ViewLocator_StaticDictionary_IsInitializedOnce()
     {
         // Arrange & Act
-        var viewsField = typeof(ViewLocator.GeneratorDemo.ViewLocator).GetField("s_views", 
+        var viewsField = typeof(ViewLocator.Generator.Demo.ViewLocator).GetField("s_views", 
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         
         var views1 = viewsField?.GetValue(null);
