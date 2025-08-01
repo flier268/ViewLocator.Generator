@@ -7,13 +7,13 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-namespace StaticViewLocator;
+namespace ViewLocator.Generator;
 
 [Generator]
-public class StaticViewLocatorGenerator : IIncrementalGenerator
+public class ViewLocatorGenerator : IIncrementalGenerator
 {
-    private const string StaticViewLocatorAttributeDisplayString =
-        "StaticViewLocator.StaticViewLocatorAttribute";
+    private const string ViewLocatorGeneratorAttributeDisplayString =
+        "ViewLocator.Generator.ViewLocatorGeneratorAttribute";
     private const string ViewModelSuffix = "ViewModel";
     private const string ViewSuffix = "View";
 
@@ -46,7 +46,7 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
                             .Any(a =>
                             {
                                 return a.AttributeClass?.ToDisplayString()
-                                    == StaticViewLocatorAttributeDisplayString;
+                                    == ViewLocatorGeneratorAttributeDisplayString;
                             });
                     })
                     .ToList();
@@ -81,7 +81,7 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
                     if (!string.IsNullOrEmpty(classSource))
                     {
                         spc.AddSource(
-                            $"{locator!.Name}_StaticViewLocator.cs",
+                            $"{locator!.Name}_ViewLocatorGenerator.cs",
                             SourceText.From(classSource!, Encoding.UTF8)
                         );
                     }
@@ -116,7 +116,7 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
         var attr = namedTypeSymbolLocator
             .GetAttributes()
             .FirstOrDefault(a =>
-                a.AttributeClass?.ToDisplayString() == StaticViewLocatorAttributeDisplayString
+                a.AttributeClass?.ToDisplayString() == ViewLocatorGeneratorAttributeDisplayString
             );
         string? nsRule = null;
         string? suffixRule = null;

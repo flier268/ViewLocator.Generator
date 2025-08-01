@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../StaticViewLocatorDemo/StaticViewLocatorDemo.csproj" />
-    <ProjectReference Include="../StaticViewLocator/StaticViewLocator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../ViewLocator.Generator.Demo/ViewLocator.Generator.Demo.csproj" />
+    <ProjectReference Include="../ViewLocator.Generator/ViewLocator.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticViewLocator", "StaticViewLocator\StaticViewLocator.csproj", "{44612354-2231-41AA-805A-C9EEF6DB4CF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator", "ViewLocator.Generator\ViewLocator.Generator.csproj", "{44612354-2231-41AA-805A-C9EEF6DB4CF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticViewLocatorDemo", "StaticViewLocatorDemo\StaticViewLocatorDemo.csproj", "{92F9405F-926D-45E7-973C-3370D0F49348}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator.Demo", "ViewLocator.Generator.Demo\ViewLocator.Generator.Demo.csproj", "{92F9405F-926D-45E7-973C-3370D0F49348}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticViewLocator.Tests", "StaticViewLocator.Tests\StaticViewLocator.Tests.csproj", "{B8A7F2D3-4C5E-4D6F-9A8B-1E2F3C4D5E6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator.Tests", "ViewLocator.Generator.Tests\ViewLocator.Generator.Tests.csproj", "{B8A7F2D3-4C5E-4D6F-9A8B-1E2F3C4D5E6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,19 +17,19 @@
   <PropertyGroup>
     <VersionPrefix>0.0.1</VersionPrefix>
     <VersionSuffix></VersionSuffix>
-    <Authors>Wiesław Šoltés</Authors>
-    <Company>Wiesław Šoltés</Company>
-    <Description>A C# source generator that automatically implements static view locator for Avalonia without using reflection.</Description>
-    <Copyright>Copyright © Wiesław Šoltés 2025</Copyright>
-    <PackageProjectUrl>https://github.com/wieslawsoltes/StaticViewLocator</PackageProjectUrl>
-    <PackageId>StaticViewLocator</PackageId>
+    <Authors>flier268</Authors>
+    <Company>flier268</Company>
+    <Description>A C# source generator that automatically implements static view locator for Avalonia without using reflection. Originally from wieslawsoltes/StaticViewLocator.</Description>
+    <Copyright>Copyright © flier268 2025</Copyright>
+    <PackageProjectUrl>https://github.com/flier268/ViewLocator.Generator</PackageProjectUrl>
+    <PackageId>ViewLocator.Generator</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>ViewLocator;static;avalonia;generator</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- Package the generator in the analyzer directory of the nuget package -->
