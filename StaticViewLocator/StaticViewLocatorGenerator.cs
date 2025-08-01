@@ -320,7 +320,7 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
                     viewModels.Add(namedType);
                 }
 
-                // 递归处理嵌套类型
+                // Recursively process nested types
                 foreach (var nestedType in namedType.GetTypeMembers())
                 {
                     if (nestedType.Name.EndsWith(ViewModelSuffix) && !nestedType.IsAbstract && nestedType.DeclaredAccessibility == Accessibility.Public)
