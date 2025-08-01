@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using ViewLocatorGenerator;
+using ViewLocator.Generator.Common;
 using ViewLocator.Generator.Demo.ViewModels;
 
 namespace ViewLocator.Generator.Demo.Examples;
@@ -11,7 +11,7 @@ namespace ViewLocator.Generator.Demo.Examples;
 /// This demonstrates using ViewToViewModelNamespaceRule, ViewToViewModelSuffixRule,
 /// and ExcludeNamespaces together for complex view location scenarios.
 /// </summary>
-[ViewLocatorGenerator(
+[GenerateViewLocator(
     ViewToViewModelNamespaceRule = "Views -> ViewModels",
     ViewToViewModelSuffixRule = "View -> ViewModel",
     ExcludeNamespaces = new[] { "Avalonia", "System" },

@@ -1,4 +1,4 @@
-using ViewLocatorGenerator;
+using ViewLocator.Generator.Common;
 using Xunit;
 
 namespace ViewLocator.Generator.Tests;
@@ -31,13 +31,13 @@ public class ViewLocatorGeneratorTests
     // Test classes that use the ViewLocator.Generator attribute
     // These will be processed by the source generator during compilation
     
-    [ViewLocatorGenerator]
+    [GenerateViewLocator]
     private partial class TestViewLocatorClass
     {
         // This class will have generated code added by the source generator
     }
 
-    [ViewLocatorGenerator(
+    [GenerateViewLocator(
         ViewToViewModelNamespaceRule = "Views -> ViewModels",
         ViewToViewModelSuffixRule = "Page -> PageViewModel", 
         IncludeNamespaces = new[] { "Test" },

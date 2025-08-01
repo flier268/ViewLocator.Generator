@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using ViewLocatorGenerator;
+using ViewLocator.Generator.Common;
 using ViewLocator.Generator.Demo.ViewModels;
 
 namespace ViewLocator.Generator.Demo.Examples;
@@ -11,7 +11,7 @@ namespace ViewLocator.Generator.Demo.Examples;
 /// This transforms "Page" suffix to "PageViewModel" suffix.
 /// For example: MyApp.Views.UserPage -> MyApp.ViewModels.UserPageViewModel
 /// </summary>
-[ViewLocatorGenerator(
+[GenerateViewLocator(
     ViewToViewModelSuffixRule = "Page -> PageViewModel",
     ExcludeNamespaces = new[] { "Avalonia" }
 )]

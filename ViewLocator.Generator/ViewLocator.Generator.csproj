@@ -25,6 +25,7 @@
     <PackageId>ViewLocator.Generator</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>ViewLocator;static;avalonia;generator</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,6 +36,10 @@
   <!-- Package the generator in the analyzer directory of the nuget package -->
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="../README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ViewLocator.Generator.Common\ViewLocator.Generator.Common.csproj" />
   </ItemGroup>
 
 </Project>
