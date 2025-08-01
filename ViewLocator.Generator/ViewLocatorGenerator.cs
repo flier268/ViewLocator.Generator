@@ -7,13 +7,13 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-namespace ViewLocator.Generator;
+namespace ViewLocatorGenerator;
 
 [Generator]
 public class ViewLocatorGenerator : IIncrementalGenerator
 {
     private const string ViewLocatorGeneratorAttributeDisplayString =
-        "ViewLocator.Generator.ViewLocatorGeneratorAttribute";
+        "ViewLocatorGenerator.ViewLocatorGeneratorAttribute";
     private const string ViewModelSuffix = "ViewModel";
     private const string ViewSuffix = "View";
 

@@ -1,17 +1,17 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using StaticViewLocator;
-using StaticViewLocatorDemo.ViewModels;
+using ViewLocatorGenerator;
+using ViewLocator.Generator.Demo.ViewModels;
 
-namespace StaticViewLocatorDemo.Examples;
+namespace ViewLocator.Generator.Demo.Examples;
 
 /// <summary>
 /// Example showing ViewToViewModelSuffixRule usage.
 /// This transforms "Page" suffix to "PageViewModel" suffix.
 /// For example: MyApp.Views.UserPage -> MyApp.ViewModels.UserPageViewModel
 /// </summary>
-[StaticViewLocator(
+[ViewLocatorGenerator(
     ViewToViewModelSuffixRule = "Page -> PageViewModel",
     ExcludeNamespaces = new[] { "Avalonia" }
 )]

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace StaticViewLocatorDemo.Views;
+namespace ViewLocator.Generator.Demo.Views;
 
 public partial class MainWindow : Window
 {

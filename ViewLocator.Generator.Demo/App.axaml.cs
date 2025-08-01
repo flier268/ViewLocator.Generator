@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using StaticViewLocatorDemo.ViewModels;
-using StaticViewLocatorDemo.Views;
+using ViewLocator.Generator.Demo.ViewModels;
+using ViewLocator.Generator.Demo.Views;
 
-namespace StaticViewLocatorDemo;
+namespace ViewLocator.Generator.Demo;
 
 public partial class App : Application
 {

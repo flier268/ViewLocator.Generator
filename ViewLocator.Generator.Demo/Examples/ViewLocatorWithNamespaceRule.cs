@@ -1,17 +1,17 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using StaticViewLocator;
-using StaticViewLocatorDemo.ViewModels;
+using ViewLocatorGenerator;
+using ViewLocator.Generator.Demo.ViewModels;
 
-namespace StaticViewLocatorDemo.Examples;
+namespace ViewLocator.Generator.Demo.Examples;
 
 /// <summary>
 /// Example showing ViewToViewModelNamespaceRule usage.
 /// This transforms "Views" namespace to "ViewModels" namespace.
 /// For example: MyApp.Views.UserView -> MyApp.ViewModels.UserViewModel
 /// </summary>
-[StaticViewLocator(
+[ViewLocatorGenerator(
     ViewToViewModelNamespaceRule = "Views -> ViewModels",
     ExcludeNamespaces = new[] { "Avalonia" }
 )]

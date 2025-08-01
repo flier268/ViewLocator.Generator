@@ -1,4 +1,4 @@
-﻿namespace StaticViewLocatorDemo.ViewModels;
+namespace ViewLocator.Generator.Demo.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {

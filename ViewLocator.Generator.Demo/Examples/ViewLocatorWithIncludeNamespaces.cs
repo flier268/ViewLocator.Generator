@@ -1,18 +1,18 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using StaticViewLocator;
-using StaticViewLocatorDemo.ViewModels;
+using ViewLocatorGenerator;
+using ViewLocator.Generator.Demo.ViewModels;
 
-namespace StaticViewLocatorDemo.Examples;
+namespace ViewLocator.Generator.Demo.Examples;
 
 /// <summary>
 /// Example showing IncludeNamespaces usage.
 /// This only includes ViewModels from specific namespaces.
-/// For example: Only include ViewModels from "StaticViewLocatorDemo.ViewModels" namespace.
+/// For example: Only include ViewModels from "ViewLocator.Generator.Demo.ViewModels" namespace.
 /// </summary>
-[StaticViewLocator(
-    IncludeNamespaces = new[] { "StaticViewLocatorDemo.ViewModels" }
+[ViewLocatorGenerator(
+    IncludeNamespaces = new[] { "ViewLocator.Generator.Demo.ViewModels" }
 )]
 public partial class ViewLocatorWithIncludeNamespaces : IDataTemplate
 {

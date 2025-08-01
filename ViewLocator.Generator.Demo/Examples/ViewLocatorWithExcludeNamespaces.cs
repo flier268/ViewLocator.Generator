@@ -1,17 +1,17 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using StaticViewLocator;
-using StaticViewLocatorDemo.ViewModels;
+using ViewLocatorGenerator;
+using ViewLocator.Generator.Demo.ViewModels;
 
-namespace StaticViewLocatorDemo.Examples;
+namespace ViewLocator.Generator.Demo.Examples;
 
 /// <summary>
 /// Example showing ExcludeNamespaces usage.
 /// This excludes ViewModels from specific namespaces.
 /// For example: Exclude all ViewModels from "Avalonia" namespaces (internal Avalonia ViewModels).
 /// </summary>
-[StaticViewLocator(
+[ViewLocatorGenerator(
     ExcludeNamespaces = new[] { "Avalonia", "System" }
 )]
 public partial class ViewLocatorWithExcludeNamespaces : IDataTemplate

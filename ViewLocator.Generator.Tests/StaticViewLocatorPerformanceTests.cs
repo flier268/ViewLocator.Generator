@@ -1,20 +1,20 @@
 using System;
 using System.Diagnostics;
-using StaticViewLocatorDemo.Examples;
-using StaticViewLocatorDemo.ViewModels;
+using ViewLocator.GeneratorDemo.Examples;
+using ViewLocator.GeneratorDemo.ViewModels;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace StaticViewLocator.Tests;
+namespace ViewLocator.Generator.Tests;
 
 /// <summary>
-/// Performance tests for StaticViewLocator functionality
+/// Performance tests for ViewLocator.Generator functionality
 /// </summary>
-public class StaticViewLocatorPerformanceTests
+public class ViewLocator.GeneratorPerformanceTests
 {
     private readonly ITestOutputHelper _output;
 
-    public StaticViewLocatorPerformanceTests(ITestOutputHelper output)
+    public ViewLocator.GeneratorPerformanceTests(ITestOutputHelper output)
     {
         _output = output;
     }
@@ -29,14 +29,14 @@ public class StaticViewLocatorPerformanceTests
         // Warm up
         for (int i = 0; i < 100; i++)
         {
-            StaticViewLocatorDemo.ViewLocator.GetView<TestViewModel>();
+            ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
         }
 
         // Act
         stopwatch.Start();
         for (int i = 0; i < iterations; i++)
         {
-            var view = StaticViewLocatorDemo.ViewLocator.GetView<TestViewModel>();
+            var view = ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
             // No need to dispose Avalonia controls
         }
         stopwatch.Stop();
@@ -54,7 +54,7 @@ public class StaticViewLocatorPerformanceTests
     {
         // Arrange
         const int iterations = 10000;
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var testViewModel = new TestViewModel();
         var stopwatch = new Stopwatch();
 
@@ -87,7 +87,7 @@ public class StaticViewLocatorPerformanceTests
     {
         // Arrange
         const int iterations = 1000;
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var testViewModel = new TestViewModel();
         var mainWindowViewModel = new MainWindowViewModel();
         var stopwatch = new Stopwatch();
@@ -99,13 +99,13 @@ public class StaticViewLocatorPerformanceTests
             try
             {
                 var view1 = locator.Build(testViewModel);
-                var view3 = StaticViewLocatorDemo.ViewLocator.GetView<TestViewModel>();
+                var view3 = ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
                 
                 // Skip MainWindow creation in headless environment
                 try
                 {
                     var view2 = locator.Build(mainWindowViewModel);
-                    var view4 = StaticViewLocatorDemo.ViewLocator.GetView<MainWindowViewModel>();
+                    var view4 = ViewLocator.GeneratorDemo.ViewLocator.GetView<MainWindowViewModel>();
                 }
                 catch (InvalidOperationException ex) when (ex.Message.Contains("IWindowingPlatform"))
                 {
@@ -132,7 +132,7 @@ public class StaticViewLocatorPerformanceTests
     {
         // Arrange
         const int iterations = 1000;
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var testViewModel = new TestViewModel();
         var tasks = new System.Threading.Tasks.Task[Environment.ProcessorCount];
         var stopwatch = new Stopwatch();
@@ -169,7 +169,7 @@ public class StaticViewLocatorPerformanceTests
     {
         // Arrange
         const int iterations = 1000;
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var testViewModel = new TestViewModel();
 
         // Force garbage collection to get baseline
@@ -208,7 +208,7 @@ public class StaticViewLocatorPerformanceTests
     public void ViewLocator_StaticDictionary_IsInitializedOnce()
     {
         // Arrange & Act
-        var viewsField = typeof(StaticViewLocatorDemo.ViewLocator).GetField("s_views", 
+        var viewsField = typeof(ViewLocator.GeneratorDemo.ViewLocator).GetField("s_views", 
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         
         var views1 = viewsField?.GetValue(null);

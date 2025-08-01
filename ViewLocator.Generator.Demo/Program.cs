@@ -1,8 +1,8 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.ReactiveUI;
 using System;
 
-namespace StaticViewLocatorDemo;
+namespace ViewLocator.Generator.Demo;
 
 sealed class Program
 {

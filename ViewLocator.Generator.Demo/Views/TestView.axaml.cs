@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace StaticViewLocatorDemo.Views;
+namespace ViewLocator.Generator.Demo.Views;
 
 public partial class TestView : UserControl
 {

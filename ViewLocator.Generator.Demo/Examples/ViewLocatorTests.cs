@@ -1,12 +1,12 @@
 using System;
-using StaticViewLocatorDemo.ViewModels;
-using StaticViewLocatorDemo.Examples;
+using ViewLocator.Generator.Demo.ViewModels;
+using ViewLocator.Generator.Demo.Examples;
 using Avalonia.Controls;
 
-namespace StaticViewLocatorDemo.Examples;
+namespace ViewLocator.Generator.Demo.Examples;
 
 /// <summary>
-/// Example showing how to test StaticViewLocator functionality
+/// Example showing how to test ViewLocator.Generator functionality
 /// </summary>
 public static class ViewLocatorTests
 {
@@ -15,7 +15,7 @@ public static class ViewLocatorTests
         var testViewModel = new TestViewModel();
         var mainWindowViewModel = new MainWindowViewModel();
 
-        Console.WriteLine("=== StaticViewLocator Tests ===");
+        Console.WriteLine("=== ViewLocator.Generator Tests ===");
         Console.WriteLine();
 
         // Test 1: Verify view locator can handle null input

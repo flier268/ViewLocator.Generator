@@ -1,8 +1,8 @@
 using System;
-using StaticViewLocatorDemo.ViewModels;
-using StaticViewLocatorDemo.Examples;
+using ViewLocator.Generator.Demo.ViewModels;
+using ViewLocator.Generator.Demo.Examples;
 
-namespace StaticViewLocatorDemo;
+namespace ViewLocator.Generator.Demo;
 
 /// <summary>
 /// Demo class showing how to use different ViewLocator configurations
@@ -14,7 +14,7 @@ public class ViewLocatorDemo
         var testViewModel = new TestViewModel();
         var mainWindowViewModel = new MainWindowViewModel();
 
-        Console.WriteLine("=== StaticViewLocator Configuration Examples ===");
+        Console.WriteLine("=== ViewLocator.Generator Configuration Examples ===");
         Console.WriteLine();
 
         // Example 1: Default ViewLocator with ExcludeNamespaces

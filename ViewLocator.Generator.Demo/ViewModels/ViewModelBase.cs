@@ -1,6 +1,6 @@
-﻿using ReactiveUI;
+using ReactiveUI;
 
-namespace StaticViewLocatorDemo.ViewModels;
+namespace ViewLocator.Generator.Demo.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

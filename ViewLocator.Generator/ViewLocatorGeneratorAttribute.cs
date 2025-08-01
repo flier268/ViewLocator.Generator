@@ -1,6 +1,6 @@
 using System;
 
-namespace ViewLocator.Generator;
+namespace ViewLocatorGenerator;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 public sealed class ViewLocatorGeneratorAttribute : Attribute

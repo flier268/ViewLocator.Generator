@@ -1,21 +1,21 @@
-using StaticViewLocatorDemo.Examples;
-using StaticViewLocatorDemo.ViewModels;
-using StaticViewLocatorDemo.Views;
+using ViewLocator.GeneratorDemo.Examples;
+using ViewLocator.GeneratorDemo.ViewModels;
+using ViewLocator.GeneratorDemo.Views;
 using Avalonia.Controls;
 using Xunit;
 
-namespace StaticViewLocator.Tests;
+namespace ViewLocator.Generator.Tests;
 
 /// <summary>
 /// Functional tests that verify the generated code works correctly
 /// </summary>
-public class StaticViewLocatorFunctionalTests
+public class ViewLocator.GeneratorFunctionalTests
 {
     [Fact]
     public void ViewLocator_WithBasicConfiguration_CanCreateViews()
     {
         // Arrange
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var testViewModel = new TestViewModel();
 
         // Act
@@ -30,7 +30,7 @@ public class StaticViewLocatorFunctionalTests
     public void ViewLocator_WithStaticMethod_CanCreateViews()
     {
         // Act
-        var result = StaticViewLocatorDemo.ViewLocator.GetView<TestViewModel>();
+        var result = ViewLocator.GeneratorDemo.ViewLocator.GetView<TestViewModel>();
 
         // Assert
         Assert.NotNull(result);
@@ -41,14 +41,14 @@ public class StaticViewLocatorFunctionalTests
     public void ViewLocator_WithInvalidType_ThrowsException()
     {
         // Act & Assert
-        Assert.Throws<InvalidOperationException>(() => StaticViewLocatorDemo.ViewLocator.GetView<string>());
+        Assert.Throws<InvalidOperationException>(() => ViewLocator.GeneratorDemo.ViewLocator.GetView<string>());
     }
 
     [Fact]
     public void ViewLocator_WithNullData_ReturnsNull()
     {
         // Arrange
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
 
         // Act
         var result = locator.Build(null);
@@ -61,7 +61,7 @@ public class StaticViewLocatorFunctionalTests
     public void ViewLocator_MatchFunction_WorksCorrectly()
     {
         // Arrange
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var testViewModel = new TestViewModel();
         var nonViewModel = "string";
 
@@ -154,7 +154,7 @@ public class StaticViewLocatorFunctionalTests
     public void ViewLocator_WithMainWindowViewModel_CreatesMainWindow()
     {
         // Arrange
-        var locator = new StaticViewLocatorDemo.ViewLocator();
+        var locator = new ViewLocator.GeneratorDemo.ViewLocator();
         var mainWindowViewModel = new MainWindowViewModel();
 
         // Act
@@ -177,7 +177,7 @@ public class StaticViewLocatorFunctionalTests
     public void ViewLocator_StaticViewsProperty_IsNotNull()
     {
         // Act
-        var viewsProperty = typeof(StaticViewLocatorDemo.ViewLocator).GetField("s_views", 
+        var viewsProperty = typeof(ViewLocator.GeneratorDemo.ViewLocator).GetField("s_views", 
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 
         // Assert
@@ -190,7 +190,7 @@ public class StaticViewLocatorFunctionalTests
     public void ViewLocator_HasRegisteredViewModels()
     {
         // Act
-        var viewsProperty = typeof(StaticViewLocatorDemo.ViewLocator).GetField("s_views", 
+        var viewsProperty = typeof(ViewLocator.GeneratorDemo.ViewLocator).GetField("s_views", 
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         var viewsValue = viewsProperty!.GetValue(null) as System.Collections.IDictionary;
 

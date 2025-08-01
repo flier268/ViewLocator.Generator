@@ -1,18 +1,18 @@
 using System;
 using Xunit;
 
-namespace StaticViewLocator.Tests;
+namespace ViewLocator.Generator.Tests;
 
 /// <summary>
-/// Tests for the StaticViewLocatorAttribute configuration
+/// Tests for the ViewLocatorGeneratorAttribute configuration
 /// </summary>
-public class StaticViewLocatorAttributeTests
+public class ViewLocatorGeneratorAttributeTests
 {
     [Fact]
-    public void StaticViewLocatorAttribute_DefaultConstructor_CreatesInstance()
+    public void ViewLocatorGeneratorAttribute_DefaultConstructor_CreatesInstance()
     {
         // Act
-        var attribute = new StaticViewLocatorAttribute();
+        var attribute = new ViewLocatorGeneratorAttribute();
 
         // Assert
         Assert.NotNull(attribute);
@@ -23,10 +23,10 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_CanSetViewToViewModelNamespaceRule()
+    public void ViewLocatorGeneratorAttribute_CanSetViewToViewModelNamespaceRule()
     {
         // Arrange
-        var attribute = new StaticViewLocatorAttribute();
+        var attribute = new ViewLocatorGeneratorAttribute();
         var rule = "Views -> ViewModels";
 
         // Act
@@ -37,10 +37,10 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_CanSetViewToViewModelSuffixRule()
+    public void ViewLocatorGeneratorAttribute_CanSetViewToViewModelSuffixRule()
     {
         // Arrange
-        var attribute = new StaticViewLocatorAttribute();
+        var attribute = new ViewLocatorGeneratorAttribute();
         var rule = "Page -> PageViewModel";
 
         // Act
@@ -51,10 +51,10 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_CanSetIncludeNamespaces()
+    public void ViewLocatorGeneratorAttribute_CanSetIncludeNamespaces()
     {
         // Arrange
-        var attribute = new StaticViewLocatorAttribute();
+        var attribute = new ViewLocatorGeneratorAttribute();
         var namespaces = new[] { "MyApp.ViewModels", "MyApp.Components" };
 
         // Act
@@ -68,10 +68,10 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_CanSetExcludeNamespaces()
+    public void ViewLocatorGeneratorAttribute_CanSetExcludeNamespaces()
     {
         // Arrange
-        var attribute = new StaticViewLocatorAttribute();
+        var attribute = new ViewLocatorGeneratorAttribute();
         var namespaces = new[] { "Avalonia", "System" };
 
         // Act
@@ -85,10 +85,10 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_HasCorrectAttributeUsage()
+    public void ViewLocatorGeneratorAttribute_HasCorrectAttributeUsage()
     {
         // Act
-        var attributeUsage = typeof(StaticViewLocatorAttribute)
+        var attributeUsage = typeof(ViewLocatorGeneratorAttribute)
             .GetCustomAttributes(typeof(AttributeUsageAttribute), false)[0] as AttributeUsageAttribute;
 
         // Assert
@@ -99,10 +99,10 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_CanSetAllPropertiesSimultaneously()
+    public void ViewLocatorGeneratorAttribute_CanSetAllPropertiesSimultaneously()
     {
         // Arrange
-        var attribute = new StaticViewLocatorAttribute();
+        var attribute = new ViewLocatorGeneratorAttribute();
 
         // Act
         attribute.ViewToViewModelNamespaceRule = "Views -> ViewModels";
@@ -120,7 +120,7 @@ public class StaticViewLocatorAttributeTests
     }
 
     [Fact]
-    public void StaticViewLocatorAttribute_CanBeAppliedToClass()
+    public void ViewLocatorGeneratorAttribute_CanBeAppliedToClass()
     {
         // This test verifies that the attribute can be applied to a class
         // The fact that the test class compiles proves the attribute usage is correct
@@ -130,7 +130,7 @@ public class StaticViewLocatorAttributeTests
         Assert.NotNull(testClass);
     }
 
-    [StaticViewLocator(
+    [ViewLocator.Generator(
         ViewToViewModelNamespaceRule = "Views -> ViewModels",
         ViewToViewModelSuffixRule = "Page -> PageViewModel",
         IncludeNamespaces = new[] { "Test" },

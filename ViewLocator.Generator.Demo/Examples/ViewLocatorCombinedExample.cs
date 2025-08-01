@@ -1,21 +1,21 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using StaticViewLocator;
-using StaticViewLocatorDemo.ViewModels;
+using ViewLocatorGenerator;
+using ViewLocator.Generator.Demo.ViewModels;
 
-namespace StaticViewLocatorDemo.Examples;
+namespace ViewLocator.Generator.Demo.Examples;
 
 /// <summary>
 /// Example showing combined usage of multiple properties.
 /// This demonstrates using ViewToViewModelNamespaceRule, ViewToViewModelSuffixRule,
 /// and ExcludeNamespaces together for complex view location scenarios.
 /// </summary>
-[StaticViewLocator(
+[ViewLocatorGenerator(
     ViewToViewModelNamespaceRule = "Views -> ViewModels",
     ViewToViewModelSuffixRule = "View -> ViewModel",
     ExcludeNamespaces = new[] { "Avalonia", "System" },
-    IncludeNamespaces = new[] { "StaticViewLocatorDemo" }
+    IncludeNamespaces = new[] { "ViewLocator.Generator.Demo" }
 )]
 public partial class ViewLocatorCombinedExample : IDataTemplate
 {
