@@ -1,17 +1,19 @@
-# StaticViewLocator
+# ViewLocator.Generator
 
-[![CI](https://github.com/wieslawsoltes/StaticViewLocator/actions/workflows/build.yml/badge.svg)](https://github.com/wieslawsoltes/StaticViewLocator/actions/workflows/build.yml)
-[![NuGet](https://img.shields.io/nuget/v/StaticViewLocator.svg)](https://www.nuget.org/packages/StaticViewLocator)
-[![NuGet](https://img.shields.io/nuget/dt/StaticViewLocator.svg)](https://www.nuget.org/packages/StaticViewLocator)
+[![CI](https://github.com/flier268/ViewLocator.Generator/actions/workflows/build.yml/badge.svg)](https://github.com/flier268/ViewLocator.Generator/actions/workflows/build.yml)
+[![NuGet](https://img.shields.io/nuget/v/ViewLocator.Generator.svg)](https://www.nuget.org/packages/ViewLocator.Generator)
+[![NuGet](https://img.shields.io/nuget/dt/ViewLocator.Generator.svg)](https://www.nuget.org/packages/ViewLocator.Generator)
 
 A C# source generator that automatically implements static view locator for Avalonia without using reflection.
+
+*Originally from [wieslawsoltes/StaticViewLocator](https://github.com/wieslawsoltes/StaticViewLocator)*
 
 ## Usage
 
 Add NuGet package reference to project.
 
 ```xml
-<PackageReference Include="StaticViewLocator" Version="0.0.1">
+<PackageReference Include="ViewLocator.Generator" Version="0.0.1">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 </PackageReference>
@@ -178,4 +180,4 @@ See the [Examples](StaticViewLocatorDemo/Examples/) directory for comprehensive 
 
 ## License
 
-StaticViewLocator is licensed under the MIT license. See [LICENSE](LICENSE.TXT) file for details.
+ViewLocator.Generator is licensed under the MIT license. See [LICENSE](LICENSE.TXT) file for details.

@@ -44,11 +44,18 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Pack NuGet package
         run: |
-          dotnet pack StaticViewLocator/StaticViewLocator.csproj \
+          dotnet pack ViewLocator.Generator/ViewLocator.Generator.csproj \
             --configuration Release \
             --no-restore \
             -p:PackageVersion=${{ steps.set_version.outputs.version }} \
             -o ./nupkg
+      - name: Publish to NuGet.org
+        run: |
+          dotnet nuget push ./nupkg/*.nupkg \
+            --source "https://api.nuget.org/v3/index.json" \
+            --api-key ${{ secrets.NUGET_TOKEN }}
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
       - name: Publish to GitHub Packages
         run: |
           dotnet nuget push ./nupkg/*.nupkg \
