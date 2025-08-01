@@ -277,7 +277,6 @@ public class StaticViewLocatorGenerator : IIncrementalGenerator
             );
             
             if (!isValidView)
-            if (!isValidView)
             {
                 source.AppendLine(
                     $"        [typeof({namespaceNameViewModel}.{classNameViewModel})] = () => new TextBlock() {{ Text = \"Not Found: {classNameView}\" }},"
