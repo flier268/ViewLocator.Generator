@@ -19,6 +19,10 @@
     <PackageId>ViewLocator.Generator.Common</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>ViewLocator;static;avalonia;generator;attributes</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
 </Project>
