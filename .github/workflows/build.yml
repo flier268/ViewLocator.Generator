@@ -22,8 +22,11 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '9.0.303'
+        dotnet-version: '9.0.x'
+        dotnet-quality: 'ga'
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build Release
-      run: dotnet build --configuration Release
+      run: dotnet build --configuration Release --no-restore
     - name: Test Release
-      run: dotnet test --configuration Release
+      run: dotnet test --configuration Release --no-build --verbosity normal
