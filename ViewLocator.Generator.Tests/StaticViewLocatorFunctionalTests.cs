@@ -9,7 +9,7 @@ namespace ViewLocator.Generator.Tests;
 /// <summary>
 /// Functional tests that verify the generated code works correctly
 /// </summary>
-public class GeneratorFunctionalTests
+public class ViewLocatorGeneratorFunctionalTests
 {
     [Fact]
     public void ViewLocator_WithBasicConfiguration_CanCreateViews()

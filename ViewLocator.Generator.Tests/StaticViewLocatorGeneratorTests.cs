@@ -7,7 +7,7 @@ namespace ViewLocator.Generator.Tests;
 /// Tests for the ViewLocator.Generator source generator functionality
 /// These tests verify that the generator produces working code by testing the actual compiled results
 /// </summary>
-public class GeneratorGeneratorTests
+public class ViewLocatorGeneratorTests
 {
     [Fact]
     public void ViewLocatorGeneratorAttribute_CanBeAppliedToClass()

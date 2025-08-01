@@ -10,15 +10,8 @@ namespace ViewLocator.Generator.Tests;
 /// <summary>
 /// Performance tests for ViewLocator.Generator functionality
 /// </summary>
-public class GeneratorPerformanceTests
+public class ViewLocatorGeneratorPerformanceTests(ITestOutputHelper output)
 {
-    private readonly ITestOutputHelper _output;
-
-    public GeneratorPerformanceTests(ITestOutputHelper output)
-    {
-        _output = output;
-    }
-
     [Fact]
     public void ViewLocator_GetView_IsFast()
     {
@@ -43,7 +36,7 @@ public class GeneratorPerformanceTests
 
         // Assert
         var averageTimeMs = stopwatch.ElapsedMilliseconds / (double)iterations;
-        _output.WriteLine($"Average time per GetView<TestViewModel>(): {averageTimeMs:F4} ms");
+        output.WriteLine($"Average time per GetView<TestViewModel>(): {averageTimeMs:F4} ms");
         
         // Should be very fast (less than 0.1ms per call)
         Assert.True(averageTimeMs < 0.1, $"GetView took {averageTimeMs:F4} ms on average, expected < 0.1 ms");
@@ -76,7 +69,7 @@ public class GeneratorPerformanceTests
 
         // Assert
         var averageTimeMs = stopwatch.ElapsedMilliseconds / (double)iterations;
-        _output.WriteLine($"Average time per Build(TestViewModel): {averageTimeMs:F4} ms");
+        output.WriteLine($"Average time per Build(TestViewModel): {averageTimeMs:F4} ms");
         
         // Should be very fast (less than 0.15ms per call due to interface overhead)
         Assert.True(averageTimeMs < 0.15, $"Build took {averageTimeMs:F4} ms on average, expected < 0.15 ms");
@@ -121,14 +114,14 @@ public class GeneratorPerformanceTests
 
         // Assert
         var averageTimeMs = stopwatch.ElapsedMilliseconds / (double)iterations;
-        _output.WriteLine($"Average time per view creation (mixed): {averageTimeMs:F4} ms");
+        output.WriteLine($"Average time per view creation (mixed): {averageTimeMs:F4} ms");
         
         // Should handle multiple view types efficiently (relaxed for test environment)
         Assert.True(averageTimeMs < 1.0, $"Mixed view creation took {averageTimeMs:F4} ms on average, expected < 1.0 ms");
     }
 
     [Fact]
-    public async Task ViewLocator_ConcurrentAccess_IsThreadSafe()
+    public async Task ViewLocator_ConcurrentAccess_IsThreadSafeAsync()
     {
         // Arrange
         const int iterations = 1000;
@@ -157,8 +150,8 @@ public class GeneratorPerformanceTests
         // Assert
         var totalOperations = tasks.Length * iterations;
         var averageTimeMs = stopwatch.ElapsedMilliseconds / (double)totalOperations;
-        _output.WriteLine($"Average time per concurrent view creation: {averageTimeMs:F4} ms");
-        _output.WriteLine($"Total concurrent operations: {totalOperations}");
+        output.WriteLine($"Average time per concurrent view creation: {averageTimeMs:F4} ms");
+        output.WriteLine($"Total concurrent operations: {totalOperations}");
         
         // Should handle concurrent access efficiently
         Assert.True(averageTimeMs < 0.5, $"Concurrent view creation took {averageTimeMs:F4} ms on average, expected < 0.5 ms");
@@ -197,8 +190,8 @@ public class GeneratorPerformanceTests
         var memoryDelta = endMemory - startMemory;
         var memoryPerOperation = memoryDelta / (double)iterations;
         
-        _output.WriteLine($"Memory delta: {memoryDelta:N0} bytes");
-        _output.WriteLine($"Memory per operation: {memoryPerOperation:F2} bytes");
+        output.WriteLine($"Memory delta: {memoryDelta:N0} bytes");
+        output.WriteLine($"Memory per operation: {memoryPerOperation:F2} bytes");
         
         // Should not leak significant memory (relaxed for test environment)
         Assert.True(memoryDelta < 50000, $"Memory usage increased by {memoryDelta:N0} bytes, expected < 50000 bytes");
@@ -219,6 +212,6 @@ public class GeneratorPerformanceTests
         Assert.NotNull(views2);
         Assert.Same(views1, views2); // Should be the same instance (static)
         
-        _output.WriteLine($"Views dictionary contains {((System.Collections.IDictionary)views1!).Count} entries");
+        output.WriteLine($"Views dictionary contains {((System.Collections.IDictionary)views1!).Count} entries");
     }
 }
