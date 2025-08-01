@@ -1,6 +1,6 @@
-# StaticViewLocator Examples
+# ViewLocator.Generator Examples
 
-This directory contains examples demonstrating the various configuration options available with the StaticViewLocator.
+This directory contains examples demonstrating the various configuration options available with the GenerateViewLocator.
 
 ## Available Configuration Properties
 
@@ -11,7 +11,7 @@ Transforms view namespaces to view model namespaces using a mapping rule.
 
 **Example:**
 ```csharp
-[StaticViewLocator(ViewToViewModelNamespaceRule = "Views -> ViewModels")]
+[GenerateViewLocator(ViewToViewModelNamespaceRule = "Views -> ViewModels")]
 ```
 
 This would transform:
@@ -25,7 +25,7 @@ Transforms view suffixes to view model suffixes using a mapping rule.
 
 **Example:**
 ```csharp
-[StaticViewLocator(ViewToViewModelSuffixRule = "Page -> PageViewModel")]
+[GenerateViewLocator(ViewToViewModelSuffixRule = "Page -> PageViewModel")]
 ```
 
 This would transform:
@@ -37,7 +37,7 @@ Only includes ViewModels from the specified namespaces.
 
 **Example:**
 ```csharp
-[StaticViewLocator(IncludeNamespaces = new[] { "MyApp.ViewModels", "SharedLib.ViewModels" })]
+[GenerateViewLocator(IncludeNamespaces = new[] { "MyApp.ViewModels", "SharedLib.ViewModels" })]
 ```
 
 This would only include ViewModels from:
@@ -49,7 +49,7 @@ Excludes ViewModels from the specified namespaces.
 
 **Example:**
 ```csharp
-[StaticViewLocator(ExcludeNamespaces = new[] { "Avalonia", "System" })]
+[GenerateViewLocator(ExcludeNamespaces = new[] { "Avalonia", "System" })]
 ```
 
 This would exclude ViewModels from:
@@ -74,13 +74,13 @@ If no rules are specified, the default behavior is:
 
 ### 1. Standard MVVM Pattern
 ```csharp
-[StaticViewLocator(ExcludeNamespaces = new[] { "Avalonia" })]
+[GenerateViewLocator(ExcludeNamespaces = new[] { "Avalonia" })]
 ```
 Uses default transformations but excludes framework ViewModels.
 
 ### 2. Custom Naming Convention
 ```csharp
-[StaticViewLocator(
+[GenerateViewLocator(
     ViewToViewModelNamespaceRule = "UI -> Business.ViewModels",
     ViewToViewModelSuffixRule = "Control -> ControlViewModel"
 )]
@@ -89,7 +89,7 @@ Transforms `UI.UserControl` → `Business.ViewModels.UserControlViewModel`.
 
 ### 3. Multiple Project Architecture
 ```csharp
-[StaticViewLocator(
+[GenerateViewLocator(
     IncludeNamespaces = new[] { "MyApp.Core.ViewModels", "MyApp.Modules.ViewModels" },
     ExcludeNamespaces = new[] { "ThirdParty" }
 )]

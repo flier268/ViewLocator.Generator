@@ -6,7 +6,7 @@
 
 A C# source generator that automatically implements static view locator for Avalonia without using reflection.
 
-*Originally from [wieslawsoltes/GenerateViewLocator](https://github.com/wieslawsoltes/GenerateViewLocator)*
+*Originally from [wieslawsoltes/StaticViewLocator](https://github.com/wieslawsoltes/StaticViewLocator)*
 
 ## Usage
 

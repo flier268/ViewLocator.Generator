@@ -102,7 +102,7 @@ public class ViewLocatorDemo
 
         Console.WriteLine();
         Console.WriteLine("=== Generated View Mappings ===");
-        Console.WriteLine("Check the generated *_StaticViewLocator.cs files in obj/GeneratedFiles/ to see");
+        Console.WriteLine("Check the generated *_ViewLocatorGenerator.cs files in obj/GeneratedFiles/ to see");
         Console.WriteLine("how each configuration affects the generated view mappings.");
         
         Console.WriteLine();
