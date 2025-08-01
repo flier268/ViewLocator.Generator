@@ -1,12 +1,12 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using ViewLocatorGenerator;
+using ViewLocator.Generator.Common;
 using ViewLocator.Generator.Demo.ViewModels;
 
 namespace ViewLocator.Generator.Demo;
 
-[ViewLocatorGenerator(ExcludeNamespaces = new[] { "Avalonia" })]
+[GenerateViewLocator(ExcludeNamespaces = new[] { "Avalonia" })]
 public partial class ViewLocator : IDataTemplate
 {
 #if true

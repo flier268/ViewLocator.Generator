@@ -10,19 +10,22 @@ A C# source generator that automatically implements static view locator for Aval
 
 ## Usage
 
-Add NuGet package reference to project.
+Add NuGet package references to your project:
 
 ```xml
 <PackageReference Include="ViewLocator.Generator" Version="0.0.1">
   <PrivateAssets>all</PrivateAssets>
   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 </PackageReference>
+<PackageReference Include="ViewLocator.Generator.Common" Version="0.0.1" />
 ```
 
-Annotate view locator class with `[StaticViewLocator]` attribute, make class `partial` and implement `Build` using `s_views` dictionary to retrieve views for `data` objects.
+Annotate view locator class with `[GenerateViewLocator]` attribute, make class `partial` and implement `Build` using `s_views` dictionary to retrieve views for `data` objects.
 
 ```csharp
-[StaticViewLocator]
+using ViewLocator.Generator.Common;
+
+[GenerateViewLocator]
 public partial class ViewLocator : IDataTemplate
 {
     public Control? Build(object? data)
@@ -56,15 +59,15 @@ public partial class ViewLocator
 {
 	private static Dictionary<Type, Func<Control>> s_views = new()
 	{
-		[typeof(StaticViewLocatorDemo.ViewModels.MainWindowViewModel)] = () => new StaticViewLocatorDemo.Views.MainWindow(),
-		[typeof(StaticViewLocatorDemo.ViewModels.TestViewModel)] = () => new StaticViewLocatorDemo.Views.TestView(),
+		[typeof(GenerateViewLocatorDemo.ViewModels.MainWindowViewModel)] = () => new GenerateViewLocatorDemo.Views.MainWindow(),
+		[typeof(GenerateViewLocatorDemo.ViewModels.TestViewModel)] = () => new GenerateViewLocatorDemo.Views.TestView(),
 	};
 }
 ```
 
 ## Configuration Options
 
-The `StaticViewLocatorAttribute` supports several properties to customize the view location behavior:
+The `GenerateViewLocator` attribute supports several properties to customize the view location behavior:
 
 ### ViewToViewModelNamespaceRule
 
@@ -73,7 +76,7 @@ Transforms view namespaces to view model namespaces using a mapping rule.
 **Format:** `"ViewNamespace -> ViewModelNamespace"`
 
 ```csharp
-[StaticViewLocator(ViewToViewModelNamespaceRule = "Views -> ViewModels")]
+[GenerateViewLocator(ViewToViewModelNamespaceRule = "Views -> ViewModels")]
 public partial class ViewLocator : IDataTemplate
 {
     // Implementation...
@@ -91,7 +94,7 @@ Transforms view suffixes to view model suffixes using a mapping rule.
 **Format:** `"ViewSuffix -> ViewModelSuffix"`
 
 ```csharp
-[StaticViewLocator(ViewToViewModelSuffixRule = "Page -> PageViewModel")]
+[GenerateViewLocator(ViewToViewModelSuffixRule = "Page -> PageViewModel")]
 public partial class ViewLocator : IDataTemplate
 {
     // Implementation...
@@ -107,7 +110,7 @@ public partial class ViewLocator : IDataTemplate
 Only includes ViewModels from the specified namespaces. This is useful when you want to limit view location to specific parts of your application.
 
 ```csharp
-[StaticViewLocator(IncludeNamespaces = new[] { "MyApp.ViewModels", "SharedLib.ViewModels" })]
+[GenerateViewLocator(IncludeNamespaces = new[] { "MyApp.ViewModels", "SharedLib.ViewModels" })]
 public partial class ViewLocator : IDataTemplate
 {
     // Implementation...
@@ -119,7 +122,7 @@ public partial class ViewLocator : IDataTemplate
 Excludes ViewModels from the specified namespaces. This is particularly useful for excluding framework or third-party ViewModels.
 
 ```csharp
-[StaticViewLocator(ExcludeNamespaces = new[] { "Avalonia", "System" })]
+[GenerateViewLocator(ExcludeNamespaces = new[] { "Avalonia", "System" })]
 public partial class ViewLocator : IDataTemplate
 {
     // Implementation...
@@ -131,7 +134,7 @@ public partial class ViewLocator : IDataTemplate
 You can combine multiple properties for complex scenarios:
 
 ```csharp
-[StaticViewLocator(
+[GenerateViewLocator(
     ViewToViewModelNamespaceRule = "Views -> ViewModels",
     ViewToViewModelSuffixRule = "View -> ViewModel",
     ExcludeNamespaces = new[] { "Avalonia", "System" },
@@ -153,18 +156,18 @@ When no configuration is specified, the default behavior is:
 
 ## Examples
 
-See the [Examples](StaticViewLocatorDemo/Examples/) directory for comprehensive examples demonstrating each configuration option.
+See the [Examples](GenerateViewLocatorDemo/Examples/) directory for comprehensive examples demonstrating each configuration option.
 
 ## Common Use Cases
 
 ### 1. Standard MVVM with Framework Exclusion
 ```csharp
-[StaticViewLocator(ExcludeNamespaces = new[] { "Avalonia" })]
+[GenerateViewLocator(ExcludeNamespaces = new[] { "Avalonia" })]
 ```
 
 ### 2. Custom Naming Convention
 ```csharp
-[StaticViewLocator(
+[GenerateViewLocator(
     ViewToViewModelNamespaceRule = "UI -> Business.ViewModels",
     ViewToViewModelSuffixRule = "Control -> ControlViewModel"
 )]
@@ -172,7 +175,7 @@ See the [Examples](StaticViewLocatorDemo/Examples/) directory for comprehensive 
 
 ### 3. Multi-Project Architecture
 ```csharp
-[StaticViewLocator(
+[GenerateViewLocator(
     IncludeNamespaces = new[] { "MyApp.Core.ViewModels", "MyApp.Modules.ViewModels" },
     ExcludeNamespaces = new[] { "ThirdParty" }
 )]

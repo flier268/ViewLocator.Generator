@@ -13,7 +13,7 @@ namespace ViewLocatorGenerator;
 public class ViewLocatorGenerator : IIncrementalGenerator
 {
     private const string ViewLocatorGeneratorAttributeDisplayString =
-        "ViewLocatorGenerator.ViewLocatorGeneratorAttribute";
+        "ViewLocator.Generator.Common.GenerateViewLocatorAttribute";
     private const string ViewModelSuffix = "ViewModel";
     private const string ViewSuffix = "View";
 

@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using ViewLocatorGenerator;
+using ViewLocator.Generator.Common;
 using ViewLocator.Generator.Demo.ViewModels;
 
 namespace ViewLocator.Generator.Demo.Examples;
@@ -11,7 +11,7 @@ namespace ViewLocator.Generator.Demo.Examples;
 /// This transforms "Views" namespace to "ViewModels" namespace.
 /// For example: MyApp.Views.UserView -> MyApp.ViewModels.UserViewModel
 /// </summary>
-[ViewLocatorGenerator(
+[GenerateViewLocator(
     ViewToViewModelNamespaceRule = "Views -> ViewModels",
     ExcludeNamespaces = new[] { "Avalonia" }
 )]

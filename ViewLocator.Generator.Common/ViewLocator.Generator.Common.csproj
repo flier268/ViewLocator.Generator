@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <Authors>flier268</Authors>
+    <Company>flier268</Company>
+    <Description>Common types for ViewLocator.Generator - Contains the GenerateViewLocatorAttribute.</Description>
+    <Copyright>Copyright © flier268 2025</Copyright>
+    <PackageProjectUrl>https://github.com/flier268/ViewLocator.Generator</PackageProjectUrl>
+    <PackageId>ViewLocator.Generator.Common</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>ViewLocator;static;avalonia;generator;attributes</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+</Project>

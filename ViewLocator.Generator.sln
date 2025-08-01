@@ -1,10 +1,13 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator", "ViewLocator.Generator\ViewLocator.Generator.csproj", "{44612354-2231-41AA-805A-C9EEF6DB4CF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator.Demo", "ViewLocator.Generator.Demo\ViewLocator.Generator.Demo.csproj", "{92F9405F-926D-45E7-973C-3370D0F49348}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator.Tests", "ViewLocator.Generator.Tests\ViewLocator.Generator.Tests.csproj", "{B8A7F2D3-4C5E-4D6F-9A8B-1E2F3C4D5E6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewLocator.Generator.Common", "ViewLocator.Generator.Common\ViewLocator.Generator.Common.csproj", "{04756C2F-FB9A-4069-B4E3-259C37C9B1AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +27,9 @@ Global
 		{B8A7F2D3-4C5E-4D6F-9A8B-1E2F3C4D5E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8A7F2D3-4C5E-4D6F-9A8B-1E2F3C4D5E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8A7F2D3-4C5E-4D6F-9A8B-1E2F3C4D5E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04756C2F-FB9A-4069-B4E3-259C37C9B1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04756C2F-FB9A-4069-B4E3-259C37C9B1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04756C2F-FB9A-4069-B4E3-259C37C9B1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04756C2F-FB9A-4069-B4E3-259C37C9B1AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

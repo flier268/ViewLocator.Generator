@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using ViewLocatorGenerator;
+using ViewLocator.Generator.Common;
 using ViewLocator.Generator.Demo.ViewModels;
 
 namespace ViewLocator.Generator.Demo.Examples;
@@ -11,7 +11,7 @@ namespace ViewLocator.Generator.Demo.Examples;
 /// This only includes ViewModels from specific namespaces.
 /// For example: Only include ViewModels from "ViewLocator.Generator.Demo.ViewModels" namespace.
 /// </summary>
-[ViewLocatorGenerator(
+[GenerateViewLocator(
     IncludeNamespaces = new[] { "ViewLocator.Generator.Demo.ViewModels" }
 )]
 public partial class ViewLocatorWithIncludeNamespaces : IDataTemplate
