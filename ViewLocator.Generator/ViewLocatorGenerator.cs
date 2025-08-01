@@ -279,13 +279,13 @@ public class ViewLocatorGenerator : IIncrementalGenerator
             if (!isValidView)
             {
                 source.AppendLine(
-                    $"        [typeof({namespaceNameViewModel}.{classNameViewModel})] = () => new TextBlock() {{ Text = \"Not Found: {classNameView}\" }},"
+                    $"        [typeof(global::{namespaceNameViewModel}.{classNameViewModel})] = () => new TextBlock() {{ Text = \"Not Found: {classNameView}\" }},"
                 );
             }
             else
             {
                 source.AppendLine(
-                    $"        [typeof({namespaceNameViewModel}.{classNameViewModel})] = () => new {classNameView}(),"
+                    $"        [typeof(global::{namespaceNameViewModel}.{classNameViewModel})] = () => new global::{classNameView}(),"
                 );
             }
         }
