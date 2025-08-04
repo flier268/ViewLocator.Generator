@@ -42,6 +42,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ViewLocator.Generator.Common\ViewLocator.Generator.Common.csproj">
       <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>compile</ExcludeAssets>
     </ProjectReference>
   </ItemGroup>
 
