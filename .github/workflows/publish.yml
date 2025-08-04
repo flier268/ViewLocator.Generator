@@ -42,16 +42,9 @@ jobs:
             fi
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-      - name: Pack Common NuGet package
+      - name: Pack NuGet package
         run: |
-          dotnet pack ViewLocator.Generator.Common/ViewLocator.Generator.Common.csproj \
-            --configuration Release \
-            --no-restore \
-            -p:PackageVersion=${{ steps.set_version.outputs.version }} \
-            -o ./nupkg
-      - name: Pack Generator NuGet package
-        run: |
-          dotnet pack ViewLocator.Generator/ViewLocator.Generator.csproj \
+          dotnet pack \
             --configuration Release \
             --no-restore \
             -p:PackageVersion=${{ steps.set_version.outputs.version }} \
